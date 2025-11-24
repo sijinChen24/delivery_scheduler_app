@@ -19,5 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Delivery-scheduler-app"
+
+rootProject.name = "delivery_scheduler_app"
 include(":app")

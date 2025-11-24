@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 简单的圆行模拟水滴，实际项目中建议使用SVG或PNG切图 -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#FF6F00"/> <!-- 橘色 -->
+            <size android:width="40dp" android:height="40dp"/>
+            <stroke android:width="2dp" android:color="#FFFFFF"/>
+        </shape>
+    </item>
+</layer-list>
