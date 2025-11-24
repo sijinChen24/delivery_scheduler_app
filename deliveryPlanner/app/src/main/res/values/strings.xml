@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">外卖助手</string>
+    <string name="system_name">智能决策辅助系统</string>
+    <string name="title">配送助手</string>
+    <string name="order_finish">订单已完成</string>
+    <string name="picked_up">已取餐</string>
+    <string name="picked_time">5</string>
+    <string name="delivery_time">10</string>
+</resources>
