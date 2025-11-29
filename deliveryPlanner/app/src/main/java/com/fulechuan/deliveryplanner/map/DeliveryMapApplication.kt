@@ -2,6 +2,7 @@ package com.fulechuan.deliveryplanner.map
 
 import android.app.Application
 import android.content.Context
+import com.amap.api.location.AMapLocationClient
 import com.amap.api.maps.MapsInitializer
 
 /**
@@ -15,5 +16,6 @@ class DeliveryMapApplication : Application() {
         val context: Context = this
         MapsInitializer.updatePrivacyShow(context, true, true)
         MapsInitializer.updatePrivacyAgree(context, true)
+
     }
 }

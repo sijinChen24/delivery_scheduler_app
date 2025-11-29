@@ -12,6 +12,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" /> <!-- 这里的权限用于查询包名 -->
 
     <application
         android:name=".map.DeliveryMapApplication"
@@ -37,9 +40,37 @@
         </activity>
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="d2240f7566881f7c70884a1359724837" />
+            android:value="@string/map_key" />
         <!-- 定位服务 -->
         <service android:name="com.amap.api.location.APSService" />
+
+        <service
+            android:name=".services.OrderAccessibilityService"
+            android:exported="true"
+            android:label="外卖自动规划助手"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+
+            <!-- 👆 上面这行 permission 绝对不能少！少了系统就不认它是无障碍服务 -->
+
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_config" />
+        </service>
+        <!-- 通知监听 -->
+        <service
+            android:name=".services.OrderNotificationService"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <!-- 悬浮窗服务 -->
+        <service android:name=".services.OverlayService" android:exported="false" />
     </application>
 
 </manifest>

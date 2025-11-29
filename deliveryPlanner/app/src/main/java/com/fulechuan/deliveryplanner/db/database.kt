@@ -5,9 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.fulechuan.deliveryplanner.dao.OrderDao
-import com.fulechuan.deliveryplanner.model.Converters
-import com.fulechuan.deliveryplanner.model.Order
+import com.fulechuan.deliveryplanner.model.dao.OrderDao
+import com.fulechuan.deliveryplanner.model.data.Converters
+import com.fulechuan.deliveryplanner.model.data.Order
 
 @Database(entities = [Order::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)

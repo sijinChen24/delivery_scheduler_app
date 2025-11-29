@@ -9,9 +9,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.unit.dp
 import com.fulechuan.deliveryplanner.enums.OrderStatus
-import com.fulechuan.deliveryplanner.model.Order
-import com.fulechuan.deliveryplanner.model.Point
-import com.fulechuan.deliveryplanner.model.RouteNode
+import com.fulechuan.deliveryplanner.model.data.Order
+import com.fulechuan.deliveryplanner.model.data.OrderNode
+import com.fulechuan.deliveryplanner.model.data.Point
 import com.fulechuan.deliveryplanner.ui.theme.BluePrimary
 import com.fulechuan.deliveryplanner.ui.theme.DropoffColor
 import com.fulechuan.deliveryplanner.ui.theme.MapGridColor
@@ -20,7 +20,7 @@ import com.fulechuan.deliveryplanner.ui.theme.PickupColor
 // --- Map Component (Canvas) ---
 
 @Composable
-fun MapSimulationView(current: Point, orders: List<Order>, route: List<RouteNode>) {
+fun MapSimulationView(current: Point, orders: List<Order>, route: List<OrderNode>) {
     Canvas(modifier = Modifier.fillMaxSize()) {
         val w = size.width
         val h = size.height
@@ -36,9 +36,13 @@ fun MapSimulationView(current: Point, orders: List<Order>, route: List<RouteNode
 
         // Draw Route Line
         if (route.isNotEmpty()) {
-            val pathPoints = mutableListOf(Offset(current.x / 100 * w, current.y / 100 * h))
+            val pathPoints = mutableListOf(Offset((current.x / 100 * w).toFloat(),
+                (current.y / 100 * h).toFloat()
+            ))
             route.forEach { task ->
-                pathPoints.add(Offset(task.location.x / 100 * w, task.location.y / 100 * h))
+                pathPoints.add(Offset((task.location.x / 100 * w).toFloat(),
+                    (task.location.y / 100 * h).toFloat()
+                ))
             }
             for (i in 0 until pathPoints.size - 1) {
                 drawLine(
@@ -54,15 +58,19 @@ fun MapSimulationView(current: Point, orders: List<Order>, route: List<RouteNode
 
         // Draw Points
         // Current Location
-        drawCircle(BluePrimary, radius = 18f, center = Offset(current.x / 100 * w, current.y / 100 * h))
-        drawCircle(Color.White, radius = 12f, center = Offset(current.x / 100 * w, current.y / 100 * h), style = androidx.compose.ui.graphics.drawscope.Stroke(width = 3f))
+        drawCircle(BluePrimary, radius = 18f, center = Offset((current.x / 100 * w).toFloat(),
+            (current.y / 100 * h).toFloat()
+        ))
+        drawCircle(Color.White, radius = 12f, center = Offset((current.x / 100 * w).toFloat(),
+            (current.y / 100 * h).toFloat()
+        ), style = androidx.compose.ui.graphics.drawscope.Stroke(width = 3f))
 
         orders.forEach { order ->
             if (order.status != OrderStatus.DELIVERED) {
-                val pX: Float = order.pickupLoc.x / 100 * w
-                val pY: Float = order.pickupLoc.y / 100 * h
-                val dX: Float = order.deliveryLoc.x / 100 * w
-                val dY: Float = order.deliveryLoc.y / 100 * h
+                val pX: Float = order.pickupLoc.x.toFloat() / 100 * w
+                val pY: Float = order.pickupLoc.y.toFloat() / 100 * h
+                val dX: Float = order.deliveryLoc.x.toFloat() / 100 * w
+                val dY: Float = order.deliveryLoc.y.toFloat() / 100 * h
 
                 if (order.status == OrderStatus.NEW_OFFER) {
                     drawCircle(Color.White, radius = 20f, center = Offset(pX, pY))

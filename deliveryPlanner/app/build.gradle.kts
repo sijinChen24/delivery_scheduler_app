@@ -20,6 +20,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
+        ndk {
+            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a"))
+        }
+
     }
 
     buildTypes {
@@ -73,17 +77,16 @@ dependencies {
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.compose.material)
     implementation(libs.play.services.tagmanager.v4.impl)
+    implementation(libs.androidx.lifecycle.service)
+    implementation(libs.androidx.compose.foundation.layout)
     ksp(libs.androidx.room.room.compiler)
     // 添加 Desugaring 库依赖
     coreLibraryDesugaring(libs.com.android.tools.desugar.jdk.libs) // 使用最新的版本}
     //3D地图so及jar,已经包含定位和搜索功能无需单独引用
     implementation("com.amap.api:3dmap-location-search:latest.integration")
-//    // 高德地图 3D地图 SDK
-//    implementation(libs.com.amap)
-//    // 高德地图 搜索 SDK (用于地址转坐标，路径规划)
-//    implementation(libs.com.amap.api.search)
-//    // 高德地图 定位 SDK
-//    implementation(libs.com.amap.api.location)
+
+    //添加网络库依赖
+    implementation(libs.com.squareup.okhttp3.okhttp)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

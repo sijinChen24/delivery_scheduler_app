@@ -6,4 +6,7 @@
     <string name="picked_up">已取餐</string>
     <string name="picked_time">5</string>
     <string name="delivery_time">10</string>
+    <string name="uu_package_name">com.slkj.paotui.worker</string>
+    <string name="jd_package_name">com.data.mobile.android</string>
+    <string name="map_key">d2240f7566881f7c70884a1359724837</string>
 </resources>

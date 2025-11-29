@@ -23,6 +23,9 @@ playServicesMaps = "19.2.0"
 runtime = "1.9.5"
 composeMaterial = "1.5.5"
 playServicesTagmanagerV4Impl = "18.1.1"
+lifecycleService = "2.10.0"
+okhttp = "4.12.0"
+foundationLayout = "1.9.5"
 
 
 [libraries]
@@ -56,7 +59,9 @@ play-services-maps = { group = "com.google.android.gms", name = "play-services-m
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "runtime" }
 androidx-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "composeMaterial" }
 play-services-tagmanager-v4-impl = { group = "com.google.android.gms", name = "play-services-tagmanager-v4-impl", version.ref = "playServicesTagmanagerV4Impl" }
-
+androidx-lifecycle-service = { group = "androidx.lifecycle", name = "lifecycle-service", version.ref = "lifecycleService" }
+com-squareup-okhttp3-okhttp = { group = "com.squareup.okhttp3" , name = "okhttp" ,version.ref = "okhttp"}
+androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "foundationLayout" }
 
 
 [plugins]
